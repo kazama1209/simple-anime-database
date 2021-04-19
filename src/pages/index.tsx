@@ -1,3 +1,4 @@
+import { GetStaticProps } from "next"
 import React, { useState, useEffect } from "react"
 
 import { makeStyles, ThemeProvider } from "@material-ui/core/styles"
@@ -35,11 +36,25 @@ const seasons: Season[] = [
 
 const currentSeason: string = seasons[(Math.ceil((new Date().getMonth() +1 ) / 3)) - 1].value
 
-const App: React.FC = () => {
-  const [loading, setLoading] = useState(true)
+export const getStaticProps: GetStaticProps = async () => {
+  const defaultAnimes = await fetchAnimesByYearAndSeason(currentYear, currentSeason)
+
+  return { 
+    revalidate: 1,
+    props: { defaultAnimes }
+  }
+}
+
+interface defaultAnimesProps {
+  defaultAnimes: Anime[]
+}
+
+const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
+  const [loading, setLoading] = useState(false)
   const [animes, setAnimes] = useState<Anime[]>()
 
   const fetchAnimesDataByYearAndSeason = async (year: number, season: string) => {
+    setLoading(true)
     setAnimes(await fetchAnimesByYearAndSeason(year, season))
     setLoading(false)
   }
@@ -49,9 +64,9 @@ const App: React.FC = () => {
     setLoading(false)
   }
 
-  useEffect(() =>{
-    fetchAnimesDataByYearAndSeason(currentYear, currentSeason)
-  }, [])
+  // useEffect(() =>{
+  //   fetchAnimesDataByYearAndSeason(currentYear, currentSeason)
+  // }, [])
 
   const classes = useStyles()
 
@@ -69,10 +84,17 @@ const App: React.FC = () => {
               fetchAnimesDataByYearAndSeason={fetchAnimesDataByYearAndSeason}
               setLoading={setLoading}
             />
-            <AnimeList
-              animes={animes}
-              loading={loading}
-            />
+            { animes ?
+              <AnimeList
+                animes={animes}
+                loading={loading}
+              /> :
+              <AnimeList
+                animes={defaultAnimes}
+                loading={loading}
+              />
+            }
+          
           </Container>
         </PageTemplate>
       </ThemeProvider>
