@@ -50,11 +50,10 @@ interface defaultAnimesProps {
 }
 
 const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(true)
   const [animes, setAnimes] = useState<Anime[]>()
 
   const fetchAnimesDataByYearAndSeason = async (year: number, season: string) => {
-    setLoading(true)
     setAnimes(await fetchAnimesByYearAndSeason(year, season))
     setLoading(false)
   }
@@ -64,9 +63,11 @@ const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
     setLoading(false)
   }
 
-  // useEffect(() =>{
-  //   fetchAnimesDataByYearAndSeason(currentYear, currentSeason)
-  // }, [])
+  useEffect(() =>{
+    if (defaultAnimes) {
+      setLoading(false)
+    }
+  }, [])
 
   const classes = useStyles()
 
@@ -94,7 +95,6 @@ const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
                 loading={loading}
               />
             }
-          
           </Container>
         </PageTemplate>
       </ThemeProvider>
