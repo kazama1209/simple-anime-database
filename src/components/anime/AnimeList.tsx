@@ -31,12 +31,10 @@ const useStyles = makeStyles(() => ({
     }
   },
   cardMedia: {
-    height: 0,
-    paddingTop: "56.25%" // 16:9,
+    height: 200,
   },
   cardMediaIsClickable: {
-    height: 0,
-    paddingTop: "56.25%", // 16:9,
+    height: 200,
     cursor: "pointer"
   },
   cardActions: {
@@ -86,7 +84,11 @@ const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
                 <Card className={classes.card}>
                   <CardMedia
                     className={anime.syobocal_tid ? classes.cardMediaIsClickable : classes.cardMedia}
-                    image={anime.images.recommended_url ? anime.images.recommended_url : "/no_image.png"}
+                    component="img"
+                    src={anime.images.recommended_url}
+                    onError={(e: any) => {
+                      e.target.src = "/no_image.png"
+                    }}
                     onClick={anime.syobocal_tid ? () => handleDetailsOpen(anime.title, anime.syobocal_tid) : null}
                   />
                   <CardActions className={classes.cardActions}>
