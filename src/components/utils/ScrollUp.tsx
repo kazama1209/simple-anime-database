@@ -1,7 +1,7 @@
 import ScrollToTop from "react-scroll-to-top"
 import KeyboardArrowUpIcon from "@material-ui/icons/KeyboardArrowUp"
 
-const ScrollUp = () => {
+const ScrollUp: React.FC = () => {
 
   return(
     <>
@@ -13,7 +13,7 @@ const ScrollUp = () => {
         }}
       />
     </>
-  );
+  )
 }
 
 export default ScrollUp

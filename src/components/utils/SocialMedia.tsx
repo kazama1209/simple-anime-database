@@ -1,11 +1,11 @@
-import { makeStyles } from "@material-ui/core/styles"
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import { Grid } from "@material-ui/core"
 
 import TwitterIcon from "@material-ui/icons/Twitter"
 import InstagramIcon from "@material-ui/icons/Instagram"
 import FacebookIcon from "@material-ui/icons/Facebook"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   snsIcon: {
     width: "30px",
     height: "30px",
@@ -18,7 +18,7 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const SocialMedia = () => {
+const SocialMedia: React.FC = () => {
   const classes = useStyles()
 
   return (

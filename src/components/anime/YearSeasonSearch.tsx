@@ -1,5 +1,5 @@
 import React, { useState } from "react"
-import Select from "react-select"
+import Select, { OptionTypeBase } from "react-select"
 
 import { makeStyles } from "@material-ui/core/styles"
 import Grid from "@material-ui/core/Grid"
@@ -20,9 +20,16 @@ const useStyles = makeStyles(() => ({
   }
 }))
 
-const YearSeasonSearch = ({ years, seasons, fetchAnimesDataByYearAndSeason, setLoading }) => {
-  const [year, setYear] = useState()
-  const [season, setSeason] = useState()
+interface YearSeasonSearchProps {
+  years: Year[]
+  seasons: Season[]
+  fetchAnimesDataByYearAndSeason: Function
+  setLoading: Function
+}
+
+const YearSeasonSearch: React.FC<YearSeasonSearchProps> = ({ years, seasons, fetchAnimesDataByYearAndSeason, setLoading }) => {
+  const [year, setYear] = useState("")
+  const [season, setSeason] = useState("")
 
   const classes = useStyles()
 
@@ -33,7 +40,7 @@ const YearSeasonSearch = ({ years, seasons, fetchAnimesDataByYearAndSeason, setL
           instanceId="year-select"
           placeholder="年"
           options={years}
-          onChange={(e) => {
+          onChange={(e: OptionTypeBase) => {
             setYear(e.value)
           }}
         />
@@ -43,7 +50,7 @@ const YearSeasonSearch = ({ years, seasons, fetchAnimesDataByYearAndSeason, setL
           instanceId="season-select"
           placeholder="シーズン"
           options={seasons}
-          onChange={(e) => {
+          onChange={(e: OptionTypeBase) => {
             setSeason(e.value)
           }}
         />  
@@ -51,7 +58,6 @@ const YearSeasonSearch = ({ years, seasons, fetchAnimesDataByYearAndSeason, setL
       <IconButton
         type="submit"
         className={classes.iconButton}
-        variant="contained"
         size="medium"
         color="default"
         disabled={!year || !season}

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import clsx from "clsx"
 
-import { makeStyles, useTheme } from "@material-ui/core/styles"
+import { makeStyles, useTheme, Theme } from "@material-ui/core/styles"
 import Drawer from "@material-ui/core/Drawer"
 import CssBaseline from "@material-ui/core/CssBaseline"
 import AppBar from "@material-ui/core/AppBar"
@@ -31,7 +31,7 @@ import { fetchSchedule } from "../../lib/api"
 
 const drawerWidth = 300
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   header: {
     display: "flex"
   },
@@ -114,14 +114,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const PageTemplate = ({ children, fetchAnimesDataByTitle, setLoading }) => {
+interface PageTemplateProps {
+  children: React.ReactNode
+  fetchAnimesDataByTitle: Function
+  setLoading: Function
+}
+
+const PageTemplate: React.FC<PageTemplateProps> = ({ children, fetchAnimesDataByTitle, setLoading }) => {
   const classes = useStyles()
   const theme = useTheme()
 
-  const [title, setTitle] = useState()
+  const [title, setTitle] = useState("")
   const [drawerOpen, setDrawerOpen] = useState(false)
   const [scheduleOpen, setScheduleOpen] = useState(false)
-  const [schedule, setSchedule] = useState()
+  const [schedule, setSchedule] = useState<Schedule[]>([])
 
   const handleDrawerOpen = () => {
     setDrawerOpen(true)
@@ -171,7 +177,7 @@ const PageTemplate = ({ children, fetchAnimesDataByTitle, setLoading }) => {
                 Anime DB
               </Link>
             </Typography>
-            <FormControl className={classes.formControl}>
+            <FormControl>
               <TextField
                 id="title-search"
                 className={classes.searchBox}
@@ -186,11 +192,11 @@ const PageTemplate = ({ children, fetchAnimesDataByTitle, setLoading }) => {
                     </InputAdornment>
                   ),
                 }}
-                onChange={(e) => {
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => {
                   setTitle(e.target.value)
                 }}
-                onKeyDown={(e) => {
-                  if (e.keyCode === 13) {
+                onKeyDown={(e: React.KeyboardEvent<HTMLInputElement>) => {
+                  if (e.key === "Enter") {
                     setLoading(true)
                     fetchAnimesDataByTitle(title)
                   }

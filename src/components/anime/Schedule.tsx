@@ -1,5 +1,6 @@
 import React from "react"
-import { makeStyles } from "@material-ui/core/styles"
+
+import { makeStyles, Theme } from "@material-ui/core/styles"
 import Button from "@material-ui/core/Button"
 import Dialog from "@material-ui/core/Dialog"
 import Container from "@material-ui/core/Container"
@@ -16,8 +17,9 @@ import IconButton from "@material-ui/core/IconButton"
 import Typography from "@material-ui/core/Typography"
 import CloseIcon from "@material-ui/icons/Close"
 import Slide from "@material-ui/core/Slide"
+import { TransitionProps } from "@material-ui/core/transitions"
 
-const useStyles = makeStyles((theme) => ({
+const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     position: "relative",
   },
@@ -33,11 +35,20 @@ const useStyles = makeStyles((theme) => ({
   }
 }))
 
-const Transition = React.forwardRef(function Transition(props, ref) {
+const Transition = React.forwardRef(function Transition(
+  props: TransitionProps & { children?: React.ReactElement },
+  ref: React.Ref<unknown>,
+) {
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-const Schedule = ({ open, schedule, handleScheduleClose }) => {
+interface ScheduleProps {
+  open: boolean
+  schedule: Schedule[]
+  handleScheduleClose: VoidFunction
+}
+
+const Schedule: React.FC<ScheduleProps> = ({ open, schedule, handleScheduleClose }) => {
   const classes = useStyles()
 
   return (
@@ -78,7 +89,7 @@ const Schedule = ({ open, schedule, handleScheduleClose }) => {
                 </TableRow>
               </TableHead>
               <TableBody>
-                { schedule && schedule.length > 1 ? schedule.map(program => (
+                { schedule && schedule.length > 1 ? schedule.map((program) => (
                     <TableRow key={program.title}>
                       <TableCell component="th" scope="row">
                         {program.title}
@@ -87,12 +98,12 @@ const Schedule = ({ open, schedule, handleScheduleClose }) => {
                       <TableCell>{program.ed_time.replace(":00 +0900", "")}</TableCell>
                       <TableCell>{program.ch_name}</TableCell>
                     </TableRow>
-                  )) :
-                  <TableRow>
+                  ))
+                  : <TableRow>
                     <TableCell component="th" scope="row">
-                      直近で放送予定のアニメはありません。
-                    </TableCell>
-                  </TableRow>
+                        直近で放送予定のアニメはありません。
+                      </TableCell>
+                    </TableRow>
                 }
               </TableBody>
             </Table>
