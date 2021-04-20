@@ -92,7 +92,10 @@ const AnimeDetails = ({ open, handleDetalisClose, title, animeDetails }) => {
                   情報が取得できませんでした。
                 </Typography>
               }
-            </> : null
+            </> :
+            <Typography variant="body2">
+              情報が取得できませんでした。
+            </Typography>
           }
         </DialogContent>
         <DialogActions>
