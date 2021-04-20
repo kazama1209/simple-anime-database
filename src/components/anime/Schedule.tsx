@@ -98,12 +98,12 @@ const Schedule: React.FC<ScheduleProps> = ({ open, schedule, handleScheduleClose
                       <TableCell>{program.ed_time.replace(":00 +0900", "")}</TableCell>
                       <TableCell>{program.ch_name}</TableCell>
                     </TableRow>
-                  ))
-                  : <TableRow>
+                  )) :
+                  <TableRow>
                     <TableCell component="th" scope="row">
-                        直近で放送予定のアニメはありません。
-                      </TableCell>
-                    </TableRow>
+                      直近で放送予定のアニメはありません。
+                    </TableCell>
+                  </TableRow>
                 }
               </TableBody>
             </Table>
