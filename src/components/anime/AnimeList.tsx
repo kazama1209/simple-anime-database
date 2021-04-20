@@ -31,11 +31,10 @@ const useStyles = makeStyles(() => ({
     }
   },
   cardMedia: {
-    height: 200,
+    aspectRatio: "16/9"
   },
   cardMediaIsClickable: {
-    height: 200,
-    cursor: "pointer"
+    aspectRatio: "16/9"
   },
   cardActions: {
     marginTop: "0.5rem"
@@ -78,13 +77,13 @@ const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
           animeDetails={animeDetails}
         />
         { loading ? <CircularProgress className={classes.circularProgress} /> :
-          animes || animes.length >= 1 ? animes.map((anime) => (
+          animes && animes.length >= 1 ? animes.map((anime) => (
             <>
               <Grid item key={anime.syobocal_tid} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
                   <CardMedia
-                    className={anime.syobocal_tid ? classes.cardMediaIsClickable : classes.cardMedia}
                     component="img"
+                    className={anime.syobocal_tid ? classes.cardMediaIsClickable : classes.cardMedia}
                     src={anime.images.recommended_url ? anime.images.recommended_url : "/no_image.png"}
                     onError={(e: any) => {
                       e.target.src = "/no_image.png"
