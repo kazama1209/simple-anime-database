@@ -34,7 +34,8 @@ const useStyles = makeStyles(() => ({
     aspectRatio: "16/9"
   },
   cardMediaIsClickable: {
-    aspectRatio: "16/9"
+    aspectRatio: "16/9",
+    cursor: "pointer"
   },
   cardActions: {
     marginTop: "0.5rem"
