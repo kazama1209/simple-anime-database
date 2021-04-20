@@ -16,7 +16,7 @@ const useStyles = makeStyles(() => ({
   },
   formControl: {
     margin: "3px",
-    minWidth: 150
+    minWidth: 130
   }
 }))
 
@@ -54,7 +54,7 @@ const YearSeasonSearch: React.FC<YearSeasonSearchProps> = ({ years, seasons, fet
             setSeason(e.value)
           }}
         />  
-      </FormControl>        
+      </FormControl>
       <IconButton
         type="submit"
         className={classes.iconButton}

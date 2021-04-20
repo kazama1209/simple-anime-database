@@ -81,13 +81,12 @@ const useStyles = makeStyles((theme: Theme) => ({
   },
   content: {
     flexGrow: 1,
-    padding: theme.spacing(3),
     transition: theme.transitions.create("margin", {
       easing: theme.transitions.easing.sharp,
       duration: theme.transitions.duration.leavingScreen
     }),
     marginLeft: -drawerWidth,
-    marginTop: "6rem"
+    marginTop: "6.5rem"
   },
   contentShift: {
     transition: theme.transitions.create("margin", {
