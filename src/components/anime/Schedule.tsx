@@ -89,7 +89,7 @@ const Schedule: React.FC<ScheduleProps> = ({ open, schedule, handleScheduleClose
                 </TableRow>
               </TableHead>
               <TableBody>
-                { schedule || schedule.length >= 1 ? schedule.map((program) => (
+                { schedule != null && schedule.length >= 1 ? schedule.map((program) => (
                     <TableRow key={program.title}>
                       <TableCell component="th" scope="row">
                         {program.title}

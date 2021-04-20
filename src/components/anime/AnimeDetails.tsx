@@ -66,7 +66,7 @@ const AnimeDetails = ({ open, handleDetalisClose, title, animeDetails }) => {
           {title}
         </DialogTitle>
         <DialogContent dividers>
-          { animeDetails ?
+          { animeDetails != null ?
             <>
               <Typography variant="h4" style={{ marginBottom: "0.5rem" }}>
                 Staffs

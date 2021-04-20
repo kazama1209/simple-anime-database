@@ -78,7 +78,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
           animeDetails={animeDetails}
         />
         { loading ? <CircularProgress className={classes.circularProgress} /> :
-          animes && animes.length >= 1 ? animes.map((anime) => (
+          animes != null && animes.length >= 1 ? animes.map((anime) => (
             <>
               <Grid item key={anime.syobocal_tid} xs={12} sm={6} md={4}>
                 <Card className={classes.card}>
@@ -92,19 +92,19 @@ const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
                     onClick={anime.syobocal_tid ? () => handleDetailsOpen(anime.title, anime.syobocal_tid) : null}
                   />
                   <CardActions className={classes.cardActions}>
-                    { anime.season_name_text ?
+                    { anime.season_name_text != null ?
                       <Chip
                         label={anime.season_name_text}
                         variant="outlined"
                       /> : null
                     }
-                    { anime.media_text ?
+                    { anime.media_text != null ?
                       <Chip
                         label={anime.media_text}
                         variant="outlined"
                       /> :null
                     }
-                    { anime.official_site_url ?
+                    { anime.official_site_url != null ?
                       <Chip
                         label="公式サイト"
                         component="a"
@@ -116,7 +116,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
                         variant="outlined"
                       /> :null
                     }
-                    { anime.twitter_username ?
+                    { anime.twitter_username != null ?
                       <Chip
                         label="Twitter"
                         component="a"

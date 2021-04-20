@@ -85,7 +85,7 @@ const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
               fetchAnimesDataByYearAndSeason={fetchAnimesDataByYearAndSeason}
               setLoading={setLoading}
             />
-            { animes ?
+            { animes != null ?
               <AnimeList
                 animes={animes}
                 loading={loading}
