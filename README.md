@@ -22,7 +22,7 @@ https://simple-anime-database.vercel.app/
 必要なパッケージのインストール。
 
 ```
-$ npm install or yarn install
+$ npm install # or yarn install
 ```
 
 環境変数をセット。
@@ -32,12 +32,12 @@ $ cp .env.local.sample .env.local
 ```
 
 - NEXT_PUBLIC_ANNICT_API_ACCESS_TOKEN: [Annict](https://developers.annict.jp/)のAPIアクセストークン
-- NEXT_PUBLIC_SELF_MADE_API_BASE_ENDPOINT: 自作API （https://github.com/kazama1209/anime-info-api） のエンドポイント
+- NEXT_PUBLIC_SELF_MADE_API_BASE_ENDPOINT: 自作API https://github.com/kazama1209/anime-info-api のエンドポイント
 
 起動。
 
 ```
-$ npm run dev or yarn install
+$ npm run dev # or yarn install
 ```
 
 http://localhost:3000/ にアクセスして正常に表示されればOK。
