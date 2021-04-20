@@ -67,37 +67,32 @@ const AnimeDetails = ({ open, handleDetalisClose, title, animeDetails }) => {
         </DialogTitle>
         <DialogContent dividers>
           { animeDetails ?
-              <>
-                <Typography variant="h4" style={{ marginBottom: "0.5rem" }}>
-                  Staffs
-                </Typography>
-                {
-                  animeDetails.staffs.length > 1 ? animeDetails.staffs.map((staff: Staff, index: number) => (
-                    <Typography key={index} variant="body2" gutterBottom>
-                      {staff.role}: {staff.name}
-                    </Typography>
-                  )) :
-                  <Typography variant="body2">
-                    情報が取得できませんでした。
+            <>
+              <Typography variant="h4" style={{ marginBottom: "0.5rem" }}>
+                Staffs
+              </Typography>
+              { animeDetails.staffs.length > 1 ? animeDetails.staffs.map((staff: Staff, index: number) => (
+                  <Typography key={index} variant="body2" gutterBottom>
+                    {staff.role}: {staff.name}
                   </Typography>
-                }
-                <Typography variant="h4" style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
-                  Casts
+                )) :
+                <Typography variant="body2">
+                  情報が取得できませんでした。
                 </Typography>
-                {
-                  animeDetails.casts.length > 1 ? animeDetails.casts.map((cast: Cast, index: number) => (
-                    <Typography key={index} variant="body2" gutterBottom>
-                      {cast.character}: {cast.name}
-                    </Typography>
-                  )) :
-                  <Typography variant="body2">
-                    情報が取得できませんでした。
+              }
+              <Typography variant="h4" style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
+                Casts
+              </Typography>
+              { animeDetails.casts.length > 1 ? animeDetails.casts.map((cast: Cast, index: number) => (
+                  <Typography key={index} variant="body2" gutterBottom>
+                    {cast.character}: {cast.name}
                   </Typography>
-                }
-              </> : 
-            <Typography variant="body2">
-              情報が取得できませんでした。
-            </Typography>
+                )) :
+                <Typography variant="body2">
+                  情報が取得できませんでした。
+                </Typography>
+              }
+            </> : null
           }
         </DialogContent>
         <DialogActions>
