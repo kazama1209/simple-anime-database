@@ -37,7 +37,9 @@ $ cp .env.local.sample .env.local
 起動。
 
 ```
-$ npm run dev # or yarn install
+$ npm run dev
+ # or
+$ yarn dev
 ```
 
 http://localhost:3000/ にアクセスして正常に表示されればOK。
