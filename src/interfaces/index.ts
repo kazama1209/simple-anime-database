@@ -1,14 +1,14 @@
-type Year = {
+export interface Year {
   value: number
   label: string
 }
 
-type Season = {
+export interface Season {
   value: string
   label: string
 }
 
-type Anime = {
+export interface Anime {
   title: string
   images: {
     recommended_url: string
@@ -20,22 +20,22 @@ type Anime = {
   season_name_text: string
 }
 
-type AnimeDetails = {
-  staffs: []
-  casts: []
-}
-
-type Staff = {
+export interface Staff {
   role: string
   name: string
 }
 
-type Cast = {
+export interface Cast {
   character: string
   name : string
 }
 
-type Schedule = {
+export interface AnimeDetail {
+  staffs: Staff[]
+  casts: Cast[]
+}
+
+export interface Schedule {
   title: string
   sub_title: string
   st_time: string

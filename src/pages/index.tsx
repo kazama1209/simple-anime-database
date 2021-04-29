@@ -11,6 +11,8 @@ import theme from "../components/utils/theme"
 
 import { fetchAnimesByYearAndSeason, fetchAnimesByTitle } from "../lib/api"
 
+import { Year, Season, Anime } from "../interfaces/index"
+
 const useStyles = makeStyles(() => ({
   container: {
     marginBottom: "1.5rem"
@@ -49,7 +51,7 @@ interface defaultAnimesProps {
   defaultAnimes: Anime[]
 }
 
-const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
+const App = ({ defaultAnimes }: defaultAnimesProps) => {
   const [loading, setLoading] = useState(true)
   const [animes, setAnimes] = useState<Anime[]>()
 
@@ -63,7 +65,7 @@ const App: React.FC<defaultAnimesProps> = ({ defaultAnimes }) => {
     setLoading(false)
   }
 
-  useEffect(() =>{
+  useEffect(() => {
     if (defaultAnimes) {
       setLoading(false)
     }

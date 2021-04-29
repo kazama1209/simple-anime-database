@@ -24,10 +24,12 @@ import FormControl from "@material-ui/core/FormControl"
 import TextField from "@material-ui/core/TextField"
 import InputAdornment from "@material-ui/core/InputAdornment"
 
-import Schedule from "../anime/Schedule"
+import ScheduleList from "../anime/ScheduleList"
 import ScrollUp from "../utils/ScrollUp"
 import SocialMedia from "../utils/SocialMedia"
 import { fetchSchedule } from "../../lib/api"
+
+import { Schedule } from "../../interfaces/index"
 
 const drawerWidth = 300
 
@@ -119,7 +121,7 @@ interface PageTemplateProps {
   setLoading: Function
 }
 
-const PageTemplate: React.FC<PageTemplateProps> = ({ children, fetchAnimesDataByTitle, setLoading }) => {
+const PageTemplate = ({ children, fetchAnimesDataByTitle, setLoading }: PageTemplateProps) => {
   const classes = useStyles()
   const theme = useTheme()
 
@@ -231,7 +233,7 @@ const PageTemplate: React.FC<PageTemplateProps> = ({ children, fetchAnimesDataBy
               <ListItemText primary="本日のアニメ放送予定" />
             </ListItem>
           </List>
-          <Schedule
+          <ScheduleList
             open={scheduleOpen}
             schedule={schedule}
             handleScheduleClose={handleScheduleClose}

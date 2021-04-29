@@ -8,6 +8,8 @@ import Typography from "@material-ui/core/Typography"
 import IconButton from "@material-ui/core/IconButton"
 import CloseIcon from "@material-ui/icons/Close"
 
+import { AnimeDetail, Cast, Staff } from "../../interfaces/index"
+
 const styles = (theme: Theme) =>
   createStyles({
     root: {
@@ -57,7 +59,14 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions)
 
-const AnimeDetails = ({ open, handleDetalisClose, title, animeDetails }) => {
+interface AnimeDetailsProps {
+  open: boolean
+  title: string
+  handleDetalisClose: VoidFunction
+  animeDetail: AnimeDetail
+}
+
+const AnimeDetails = ({ open, handleDetalisClose, title, animeDetail }: AnimeDetailsProps) => {
 
   return (
     <div>
@@ -66,12 +75,12 @@ const AnimeDetails = ({ open, handleDetalisClose, title, animeDetails }) => {
           {title}
         </DialogTitle>
         <DialogContent dividers>
-          { animeDetails != null ?
+          { animeDetail != null ?
             <>
               <Typography variant="h4" style={{ marginBottom: "0.5rem" }}>
                 Staffs
               </Typography>
-              { animeDetails.staffs.length > 1 ? animeDetails.staffs.map((staff: Staff, index: number) => (
+              { animeDetail.staffs.length > 1 ? animeDetail.staffs.map((staff: Staff, index: number) => (
                   <Typography key={index} variant="body2" gutterBottom>
                     {staff.role}: {staff.name}
                   </Typography>
@@ -83,7 +92,7 @@ const AnimeDetails = ({ open, handleDetalisClose, title, animeDetails }) => {
               <Typography variant="h4" style={{ marginTop: "1rem", marginBottom: "0.5rem" }}>
                 Casts
               </Typography>
-              { animeDetails.casts.length > 1 ? animeDetails.casts.map((cast: Cast, index: number) => (
+              { animeDetail.casts.length > 1 ? animeDetail.casts.map((cast: Cast, index: number) => (
                   <Typography key={index} variant="body2" gutterBottom>
                     {cast.character}: {cast.name}
                   </Typography>

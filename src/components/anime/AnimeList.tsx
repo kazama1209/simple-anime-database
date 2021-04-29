@@ -13,6 +13,8 @@ import Typography from "@material-ui/core/Typography"
 import AnimeDetails from "./AnimeDetails" 
 import { fetchAnimeByTid } from "../../lib/api"
 
+import { Anime, AnimeDetail } from "../../interfaces/index"
+
 const useStyles = makeStyles(() => ({
   circularProgress: {
     position: "absolute",
@@ -47,19 +49,19 @@ interface AnimeListProps {
   animes: Anime[]
 }
 
-const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
+const AnimeList = ({ loading, animes}: AnimeListProps) => {
   const [title, setTitle] = useState("")
-  const [animeDetails, setAnimeDetails] = useState<AnimeDetails>()
+  const [animeDetail, setAnimeDetail] = useState<AnimeDetail>()
   const [open, setOpen] = useState(false)
 
-  const fetchAnimeDetails = async (tid: string) => {
-    setAnimeDetails(await fetchAnimeByTid(tid))
+  const fetchAnimeDetail = async (tid: string) => {
+    setAnimeDetail(await fetchAnimeByTid(tid))
   }
   
   const handleDetailsOpen = async (title: string, tid: string) => {
     setTitle(title)
     setOpen(true)
-    await fetchAnimeDetails(tid)
+    await fetchAnimeDetail(tid)
   }
 
   const handleDetalisClose = () => {
@@ -75,7 +77,7 @@ const AnimeList: React.FC<AnimeListProps> = ({ loading, animes}) => {
           open={open}
           handleDetalisClose={handleDetalisClose}
           title={title}
-          animeDetails={animeDetails}
+          animeDetail={animeDetail}
         />
         { loading ? <CircularProgress className={classes.circularProgress} /> :
           animes != null && animes.length >= 1 ? animes.map((anime) => (

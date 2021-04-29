@@ -7,6 +7,8 @@ import IconButton from "@material-ui/core/IconButton"
 import SearchIcon from "@material-ui/icons/Search"
 import FormControl from "@material-ui/core/FormControl"
 
+import { Year, Season } from "../../interfaces/index"
+
 const useStyles = makeStyles(() => ({
   gridContainer: {
     marginBottom: "2rem"
@@ -27,7 +29,7 @@ interface YearSeasonSearchProps {
   setLoading: Function
 }
 
-const YearSeasonSearch: React.FC<YearSeasonSearchProps> = ({ years, seasons, fetchAnimesDataByYearAndSeason, setLoading }) => {
+const YearSeasonSearch = ({ years, seasons, fetchAnimesDataByYearAndSeason, setLoading }: YearSeasonSearchProps) => {
   const [year, setYear] = useState("")
   const [season, setSeason] = useState("")
 

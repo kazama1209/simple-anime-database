@@ -19,6 +19,8 @@ import CloseIcon from "@material-ui/icons/Close"
 import Slide from "@material-ui/core/Slide"
 import { TransitionProps } from "@material-ui/core/transitions"
 
+import { Schedule } from "../../interfaces/index"
+
 const useStyles = makeStyles((theme: Theme) => ({
   appBar: {
     position: "relative",
@@ -42,13 +44,13 @@ const Transition = React.forwardRef(function Transition(
   return <Slide direction="up" ref={ref} {...props} />
 })
 
-interface ScheduleProps {
+interface ScheduleListProps {
   open: boolean
   schedule: Schedule[]
   handleScheduleClose: VoidFunction
 }
 
-const Schedule: React.FC<ScheduleProps> = ({ open, schedule, handleScheduleClose }) => {
+const ScheduleList = ({ open, schedule, handleScheduleClose }: ScheduleListProps) => {
   const classes = useStyles()
 
   return (
@@ -114,4 +116,4 @@ const Schedule: React.FC<ScheduleProps> = ({ open, schedule, handleScheduleClose
   )
 }
 
-export default Schedule
+export default ScheduleList
