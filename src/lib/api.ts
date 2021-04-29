@@ -1,3 +1,5 @@
+import { Anime, AnimeDetail, Schedule } from "../interfaces/index"
+
 const access_token: string = process.env.NEXT_PUBLIC_ANNICT_API_ACCESS_TOKEN
 const self_made_api_base_endpoint: string = process.env.NEXT_PUBLIC_SELF_MADE_API_BASE_ENDPOINT
 
@@ -38,7 +40,7 @@ export async function fetchAnimesByTitle (title: string): Promise<Anime[]> {
 }
 
 // しょぼいカレンダーのTidからアニメ情報を取得
-export async function fetchAnimeByTid (tid: string): Promise<AnimeDetails> {
+export async function fetchAnimeByTid (tid: string): Promise<AnimeDetail> {
   const res = await fetch(`${self_made_api_base_endpoint}/anime_details?tid=${tid}`)
   const anime = await res.json()
 
